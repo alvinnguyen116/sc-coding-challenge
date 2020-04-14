@@ -1,7 +1,7 @@
 # Service Channel Coding Challenge 
 This is my response to a coding challenge by [Service Channel](https://servicechannel.com/).
 
-Check out the [live demo](http://alvinnguyen116.github.io/sc-coding-challenge). 
+Check out the [live demo](https://alvinnguyen116.github.io/sc-coding-challenge/). 
 
 ## Installation
 Clone the repo and install the node modules through npm or yarn. 
@@ -19,8 +19,8 @@ npm run start
 Base Requirements
 
  - Create a single page application using react that lets you browse through [reddit](https://www.reddit.com/)
-    - To get a list of subreddits you can use the [popular endpoint](https://www.reddit.com/subreddits/popular.json?raw_json=1),
-     to get a list of posts for a subreddit you can use the [posts endpoint](https://www.reddit.com/r/politics/hot.json)
+    - To get a list of subreddits you can use the [popular endpoint](https://www.reddit.com/subreddits/popular.json?raw_json=1)
+    - To get a list of posts for a subreddit you can use the [posts endpoint](https://www.reddit.com/r/politics/hot.json)
  - There should be a panel where you can see the details of a selected post 
   (post title, author, image/preview if there is any, text if there is any)
 
@@ -50,7 +50,7 @@ Submission Requirements
  - I was told to finish this project within 2-4 hours. I finished the main features in 5-6 hours 
  and spent about an hour documenting and deploying. 
  To speed up my development, I took a lot of 'inspiration' from a 
- [previous coding challenge](https://alvinnguyen116.github.io/jobox-coding-challenge) of mine.  
+ [previous coding challenge](https://alvinnguyen116.github.io/jobox-coding-challenge/) of mine.  
  
  - I couldn't really find a plaintext description in either endpoints. All I could find was markdown text 
  under the property name "selftext". There was no good way to covert this into a succinct description, so I opted 
