@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/sc-coding-challenge/static/css/main.088aae36.chunk.css",
+    "main.js": "/sc-coding-challenge/static/js/main.1fcbf87f.chunk.js",
+    "main.js.map": "/sc-coding-challenge/static/js/main.1fcbf87f.chunk.js.map",
+    "runtime-main.js": "/sc-coding-challenge/static/js/runtime-main.c2124276.js",
+    "runtime-main.js.map": "/sc-coding-challenge/static/js/runtime-main.c2124276.js.map",
+    "static/js/2.e90fef41.chunk.js": "/sc-coding-challenge/static/js/2.e90fef41.chunk.js",
+    "static/js/2.e90fef41.chunk.js.map": "/sc-coding-challenge/static/js/2.e90fef41.chunk.js.map",
+    "index.html": "/sc-coding-challenge/index.html",
+    "precache-manifest.f12424508c89b30c5241d265fb8a14f3.js": "/sc-coding-challenge/precache-manifest.f12424508c89b30c5241d265fb8a14f3.js",
+    "service-worker.js": "/sc-coding-challenge/service-worker.js",
+    "static/css/main.088aae36.chunk.css.map": "/sc-coding-challenge/static/css/main.088aae36.chunk.css.map"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c2124276.js",
+    "static/js/2.e90fef41.chunk.js",
+    "static/css/main.088aae36.chunk.css",
+    "static/js/main.1fcbf87f.chunk.js"
+  ]
+}
