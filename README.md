@@ -19,8 +19,8 @@ npm run start
 Base Requirements
 
  - Create a single page application using react that lets you browse through [reddit](https://www.reddit.com/)
-    - To get a list of subreddits you can do [popular endpoint](https://www.reddit.com/subreddits/popular.json?raw_json=1)
-    , to get a list of posts for a subreddit you can do [posts endpoint](https://www.reddit.com/r/politics/hot.json)
+    - To get a list of subreddits you can use the [popular endpoint](https://www.reddit.com/subreddits/popular.json?raw_json=1),
+     to get a list of posts for a subreddit you can use the [posts endpoint](https://www.reddit.com/r/politics/hot.json)
  - There should be a panel where you can see the details of a selected post 
   (post title, author, image/preview if there is any, text if there is any)
 
@@ -60,6 +60,10 @@ Submission Requirements
  
  - I opted not to do styling on selection. Because of the way I built the app, selection simply 
  takes the user to the desired page. 
+ 
+ - I spent a lot of time trying to figure out which property to use from the objects returned by the endpoints. 
+ I didn't really find the [documentation on Reddit API](https://www.reddit.com/dev/api/) helpful, so I just inspected 
+ each object manually to find what I needed. 
  
 ## Contributions 
  I'm always open for suggestions and improvements.
