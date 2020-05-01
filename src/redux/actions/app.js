@@ -1,5 +1,5 @@
-import {FETCH_POSTS, FETCH_TOPICS, APP} from "./actionTypes";
-import {fetchPosts, fetchTopics} from "../../api";
+import {FETCH_POSTS, FETCH_TOPICS, APP, SEARCH_TOPICS} from "./actionTypes";
+import {fetchPosts, fetchTopics, searchTopics} from "../../api";
 
 function fetchPostInitial() {
     return {
@@ -40,6 +40,27 @@ function fetchTopicSuccess(data) {
 function fetchTopicFailure(err) {
     return {
         type: FETCH_TOPICS.FAILURE,
+        err
+    };
+}
+
+function searchTopicInitial() {
+    return {
+        type: SEARCH_TOPICS.INITIAL
+    };
+}
+
+function searchTopicSuccess(data) {
+    const topics = data.data.children.map(child => child.data);
+    return {
+        type: SEARCH_TOPICS.SUCCESS,
+        topics
+    };
+}
+
+function searchTopicFailure(err) {
+    return {
+        type: SEARCH_TOPICS.FAILURE,
         err
     };
 }
@@ -89,6 +110,18 @@ export function getPosts(topic) {
             dispatch(fetchPostSuccess(topic, data));
         } catch (e) {
             dispatch(fetchPostFailure(e));
+        }
+    };
+}
+
+export function searchTopicsReducer(input) {
+    return async (dispatch) => {
+        dispatch(searchTopicInitial());
+        try {
+            const res = await searchTopics(input);
+            dispatch(searchTopicSuccess(res));
+        } catch (e) {
+            dispatch(searchTopicFailure(e));
         }
     };
 }

@@ -1,9 +1,10 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState, useMemo} from 'react';
 import {connect} from 'react-redux';
-import {getTopics, getPosts} from "../../redux/actions/app";
+import {getTopics, getPosts, searchTopicsReducer} from "../../redux/actions/app";
 import ErrorBoundary from "../error-boundary/error-boundary";
 import Topics from "../topics/topics";
 import Posts from "../posts/posts";
+import Search from '../search/search';
 import './App.scss';
 
 /**
@@ -19,15 +20,18 @@ function App({appState, dispatch}) {
   // GLOBAL VARIABLES --------------------------------------------------------------------------------------------------
 
   const {hasError, topics, currentTopic, isShowingPosts, posts} = appState;
+  const [isPopularTopic, setIsPopularTopic] = useState(true);
+  const [inputVal, setInputVal] = useState('');
 
   // SIDE EFFECTS ------------------------------------------------------------------------------------------------------
 
   /**
    * @desc Dispatch an action to the store
-   * to obtain the topics once.
+   * to obtain the (popular) topics once.
    */
   useEffect(() => {
-    dispatch(getTopics());
+    dispatch(getTopics()); // popular topics
+    setIsPopularTopic(true);
   }, []);
 
   /**
@@ -48,16 +52,50 @@ function App({appState, dispatch}) {
   // COMPONENTS --------------------------------------------------------------------------------------------------------
 
   const renderTopicsOrPosts = () => {
+    const displayTitle = isPopularTopic ? "Popular" : inputVal;
     if (isShowingPosts && currentTopic && posts.has(currentTopic)) {
       return (<Posts posts={posts.get(currentTopic)} topic={currentTopic} dispatch={dispatch}/>);
     }
-    return (<Topics topics={topics} dispatch={dispatch}/>);
+    return (<Topics topics={topics} dispatch={dispatch} displayTitle={displayTitle}/>);
+  };
+
+  const memoizedRenderTopicsOrPosts = useMemo(renderTopicsOrPosts, [topics, posts]);
+
+  const handleOnKeyDown = e => {
+    const {keyCode} = e;
+    console.log("handleonkeydown");
+    try {
+      const {value} = e.target;
+      if (keyCode === 13) {
+        console.log("Enter");
+        if (value) {
+          dispatch(searchTopicsReducer(value));
+          setIsPopularTopic(false);
+        } else {
+          dispatch(getTopics());
+          setIsPopularTopic(true);
+        }
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+
+  const searchProps = {
+    handleOnKeyDown,
+    handleValueChange: console.log,
+    handleOnFocus: console.log,
+    firstSearch: true,
+    dispatch,
+    setInputVal
   };
 
   return (
     <ErrorBoundary hasError={hasError} dispatch={dispatch}>
       <main className={"app"}>
-        {renderTopicsOrPosts()}
+        <Search {...searchProps} />
+        {memoizedRenderTopicsOrPosts}
       </main>
     </ErrorBoundary>
   );

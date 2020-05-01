@@ -1,4 +1,4 @@
-import {FETCH_POSTS, FETCH_TOPICS, APP} from "../actions/actionTypes";
+import {FETCH_POSTS, FETCH_TOPICS, APP, SEARCH_TOPICS} from "../actions/actionTypes";
 import {cloneDeep} from 'lodash';
 
 const INITIAL_STATE = {
@@ -16,6 +16,7 @@ export default (prevState = INITIAL_STATE, action) => {
     switch(action.type) {
         case FETCH_POSTS.INITIAL:
         case FETCH_TOPICS.INITIAL:
+        case SEARCH_TOPICS.INITIAL:
             return {
                 ...prevState,
                 error: null,
@@ -34,8 +35,15 @@ export default (prevState = INITIAL_STATE, action) => {
                 inProgress: false,
                 topics: action.topics
             };
+        case SEARCH_TOPICS.SUCCESS:
+            return {
+                ...prevState,
+                inProgress: false,
+                topics: action.topics
+            };
         case FETCH_POSTS.FAILURE:
         case FETCH_TOPICS.FAILURE:
+        case SEARCH_TOPICS.FAILURE:
             return {
                 ...prevState,
                 inProgress: false,

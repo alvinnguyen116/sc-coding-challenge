@@ -1,20 +1,24 @@
 import React from 'react';
 import {setCurrentTopic, setShowPosts} from "../../redux/actions/app";
+import {prettifyTitle} from '../../util/util';
+
 import './topics.scss';
 
 /**
  * @param topics
  * @param dispatch
+ * @param displayTitle {string}
  * @desc A non-connected component for displaying a list of topics.
  */
-function Topics({topics, dispatch}) {
+function Topics({topics, displayTitle, dispatch}) {
 
     // COMPONENTS ------------------------------------------------------------------------------------------------------
 
     const topicElements = topics.map(data => <Topic data={data} key={data.name} dispatch={dispatch}/>);
+    displayTitle = prettifyTitle(displayTitle);
     return (
         <>
-            <h1>Popular Topics</h1>
+            <h1>{displayTitle} Topics</h1>
             <div className={"topics"}>
               {topicElements}
             </div>

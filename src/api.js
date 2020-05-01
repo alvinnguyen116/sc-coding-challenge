@@ -22,3 +22,8 @@ export function fetchPosts(topic) {
     const url = `https://www.reddit.com/r/${topic}/hot.json`;
     return getJSON(url);
 }
+
+export function searchTopics(topic) {
+    const url = `https://www.reddit.com/subreddits/search.json?q=${topic}`;
+    return getJSON(url);
+}

@@ -10,6 +10,12 @@ export const FETCH_POSTS = Object.freeze({
     FAILURE: "FETCH_POSTS_FAILURE"
 });
 
+export const SEARCH_TOPICS = Object.freeze({
+    INITIAL: "SEARCH_TOPICS_INITIAL",
+    SUCCESS: "SEARCH_TOPICS_SUCCESS",
+    FAILURE: "SEARCH_TOPICS_FAILURE"
+});
+
 export const APP = Object.freeze({
    SET_ERROR: "APP_SET_ERROR",
    SET_SHOWING_POSTS: "APP_SET_SHOWING_POSTS",
