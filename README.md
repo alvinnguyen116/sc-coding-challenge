@@ -76,7 +76,7 @@ Submission Requirements
  
  Round #2 
  
- - Since I only had an hour, I took a search bar from a previous project to save
+ - Since I only had an hour, I took a search bar from a [previous project](https://alvinnguyen116.github.io/jobox-coding-challenge/) to save
  time on CSS and layout. 
  
  - Since my computer is slow, I wrote most of the code blindly (without checking locally). In order, 
