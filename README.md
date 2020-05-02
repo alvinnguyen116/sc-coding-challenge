@@ -30,8 +30,17 @@ Base Requirements
 
  - There should be a list of subreddits 
 
-   - Every list item should have ‘active styling’ if its selected and another if its hovered
-
+ - Every list item should have ‘active styling’ if its selected and another if its hovered
+  
+ Round #2: 
+ 
+ - implement a search bar (w/o autocomplete) that replaces the 
+ of popular subreddits. If the search bar is empty, display the popular 
+ list by default. 
+ 
+ - Make the title change based on Popular vs Search subreddits 
+ 
+  
 Submission Requirements
 
  - Application should be written in React, (redux optional) 
@@ -65,8 +74,20 @@ Submission Requirements
  I didn't really find the [documentation on Reddit API](https://www.reddit.com/dev/api/) helpful, so I just inspected 
  each object manually to find what I needed. 
  
+ Round #2 
+ 
+ - Since I only had an hour, I took a search bar from a previous project to save
+ time on CSS and layout. 
+ 
+ - Since my computer is slow, I wrote most of the code blindly (without checking locally). In order, 
+ I added the new endpoint inside of api.js, added new actions and thunks 
+, and finally created a local boolean whether to show popular topics.
+
 ## Contributions 
  I'm always open for suggestions and improvements.
  
  Feel free to create a [pull request](https://github.com/alvinnguyen116/sc-coding-challenge/pulls) 
  or submit an [issue](https://github.com/alvinnguyen116/sc-coding-challenge/issues).
+
+ 
+ 
