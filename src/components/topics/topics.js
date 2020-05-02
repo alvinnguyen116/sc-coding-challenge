@@ -1,7 +1,6 @@
 import React from 'react';
 import {setCurrentTopic, setShowPosts} from "../../redux/actions/app";
 import {prettifyTitle} from '../../util/util';
-
 import './topics.scss';
 
 /**

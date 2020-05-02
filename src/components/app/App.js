@@ -1,6 +1,6 @@
 import React, {useEffect, useState, useMemo} from 'react';
 import {connect} from 'react-redux';
-import {getTopics, getPosts, searchTopicsReducer} from "../../redux/actions/app";
+import {getTopics, getPosts, searchTopicsReducer, setShowPosts} from "../../redux/actions/app";
 import ErrorBoundary from "../error-boundary/error-boundary";
 import Topics from "../topics/topics";
 import Posts from "../posts/posts";
@@ -30,8 +30,7 @@ function App({appState, dispatch}) {
    * to obtain the (popular) topics once.
    */
   useEffect(() => {
-    dispatch(getTopics()); // popular topics
-    setIsPopularTopic(true);
+    getTopicsLocal();
   }, []);
 
   /**
@@ -59,21 +58,33 @@ function App({appState, dispatch}) {
     return (<Topics topics={topics} dispatch={dispatch} displayTitle={displayTitle}/>);
   };
 
-  const memoizedRenderTopicsOrPosts = useMemo(renderTopicsOrPosts, [topics, posts]);
+  const getTopicsLocal = () => {
+    dispatch(getTopics());
+    setIsPopularTopic(true);
+    dispatch(setShowPosts(false));
+  };
+
+  const searchTopicsReducerLocal = value => {
+    dispatch(searchTopicsReducer(value));
+    setIsPopularTopic(false);
+    dispatch(setShowPosts(false));
+  };
+
+  /**
+   * @desc Memoize the function so change in
+   * inputVal doesn't trigger component change.
+   */
+  const memoizedRenderTopicsOrPosts = useMemo(renderTopicsOrPosts, [topics, posts, isShowingPosts]);
 
   const handleOnKeyDown = e => {
     const {keyCode} = e;
-    console.log("handleonkeydown");
     try {
       const {value} = e.target;
       if (keyCode === 13) {
-        console.log("Enter");
         if (value) {
-          dispatch(searchTopicsReducer(value));
-          setIsPopularTopic(false);
+          searchTopicsReducerLocal(value);
         } else {
-          dispatch(getTopics());
-          setIsPopularTopic(true);
+          getTopicsLocal();
         }
       }
     } catch (e) {
@@ -84,8 +95,6 @@ function App({appState, dispatch}) {
 
   const searchProps = {
     handleOnKeyDown,
-    handleValueChange: console.log,
-    handleOnFocus: console.log,
     firstSearch: true,
     dispatch,
     setInputVal

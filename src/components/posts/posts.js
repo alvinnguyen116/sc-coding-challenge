@@ -16,7 +16,7 @@ function Posts({posts, topic, dispatch}) {
 
     // GLOBAL VARIABLES ------------------------------------------------------------------------------------------------
 
-    const postElements = posts.map(post => <Post data={post}/>);
+    const postElements = posts.map(post => <Post data={post} key={post.name}/>);
 
     // HANDLERS --------------------------------------------------------------------------------------------------------
 
