@@ -48,33 +48,8 @@ function App({appState, dispatch}) {
     wrapper().then();
   }, [currentTopic]);
 
-  // COMPONENTS --------------------------------------------------------------------------------------------------------
 
-  const renderTopicsOrPosts = () => {
-    const displayTitle = isPopularTopic ? "Popular" : inputVal;
-    if (isShowingPosts && currentTopic && posts.has(currentTopic)) {
-      return (<Posts posts={posts.get(currentTopic)} topic={currentTopic} dispatch={dispatch}/>);
-    }
-    return (<Topics topics={topics} dispatch={dispatch} displayTitle={displayTitle}/>);
-  };
-
-  const getTopicsLocal = () => {
-    dispatch(getTopics());
-    setIsPopularTopic(true);
-    dispatch(setShowPosts(false));
-  };
-
-  const searchTopicsReducerLocal = value => {
-    dispatch(searchTopicsReducer(value));
-    setIsPopularTopic(false);
-    dispatch(setShowPosts(false));
-  };
-
-  /**
-   * @desc Memoize the function so change in
-   * inputVal doesn't trigger component change.
-   */
-  const memoizedRenderTopicsOrPosts = useMemo(renderTopicsOrPosts, [topics, posts, isShowingPosts]);
+  // HANDLERS ----------------------------------------------------------------------------------------------------------
 
   const handleOnKeyDown = e => {
     const {keyCode} = e;
@@ -92,6 +67,35 @@ function App({appState, dispatch}) {
     }
   };
 
+  // METHODS -----------------------------------------------------------------------------------------------------------
+
+  const getTopicsLocal = () => {
+    dispatch(getTopics());
+    setIsPopularTopic(true);
+    dispatch(setShowPosts(false));
+  };
+
+  const searchTopicsReducerLocal = value => {
+    dispatch(searchTopicsReducer(value));
+    setIsPopularTopic(false);
+    dispatch(setShowPosts(false));
+  };
+
+  // COMPONENTS --------------------------------------------------------------------------------------------------------
+
+  const renderTopicsOrPosts = () => {
+    const displayTitle = isPopularTopic ? "Popular" : inputVal;
+    if (isShowingPosts && currentTopic && posts.has(currentTopic)) {
+      return (<Posts posts={posts.get(currentTopic)} topic={currentTopic} dispatch={dispatch}/>);
+    }
+    return (<Topics topics={topics} dispatch={dispatch} displayTitle={displayTitle}/>);
+  };
+
+  /**
+   * @desc Memoize the function so change in
+   * inputVal doesn't trigger component change.
+   */
+  const memoizedRenderTopicsOrPosts = useMemo(renderTopicsOrPosts, [topics, posts, isShowingPosts]);
 
   const searchProps = {
     handleOnKeyDown,

@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useRef} from 'react';
 import PropTypes from "prop-types";
 import {Icon} from "@blueprintjs/core";
 import { IconNames } from "@blueprintjs/icons";
@@ -6,7 +6,8 @@ import {setError} from "../../redux/actions/app";
 import './search.scss';
 
 /**
- * @param items {[]} - the items to make searchable and selectable
+ * @param setInputVal
+ * @param handleOnKeyDown
  * @param firstSearch {boolean} - whether the first search is completed
  * @param dispatch {function}
  * @desc A search bar component for selecting a type of breed.
@@ -61,6 +62,8 @@ function Search({setInputVal, handleOnKeyDown, firstSearch, dispatch}) {
             dispatch(setError(err));
         }
     };
+
+    // COMPONENTS ------------------------------------------------------------------------------------------------------
 
     /**
      * @desc Renders a button to clear

@@ -6,7 +6,7 @@ import './topics.scss';
 /**
  * @param topics
  * @param dispatch
- * @param displayTitle {string}
+ * @param displayTitle {string} - title to display near top
  * @desc A non-connected component for displaying a list of topics.
  */
 function Topics({topics, displayTitle, dispatch}) {

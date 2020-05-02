@@ -30,11 +30,6 @@ export default (prevState = INITIAL_STATE, action) => {
                 posts: updatePosts(posts, action.topic, action.data)
             };
         case FETCH_TOPICS.SUCCESS:
-            return {
-                ...prevState,
-                inProgress: false,
-                topics: action.topics
-            };
         case SEARCH_TOPICS.SUCCESS:
             return {
                 ...prevState,
